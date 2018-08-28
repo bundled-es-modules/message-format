@@ -1,6 +1,7 @@
 {
-  "name": "message-format",
-  "description": "mirror of message-format for bower, bundled and exposed as ES module",
+  "name": "@bundled-es-modules/message-format",
+  "version": "6.0.4",
+  "description": "mirror of message-format, bundled and exposed as ES module",
   "author": "Thomas Allmer <d4kmor@gmail.com>",
   "main": "index.js",
   "devDependencies": {
