@@ -156,7 +156,7 @@ var formatMessageFormats = {
         case 'M':
         case 'L':
           n = Math.min(Math.max(n - 1, 0), 4);
-          options.month = [ NUMERIC, TWODIGIT, SHORT, LONG, NARROW ][n];
+          options.month = [NUMERIC, TWODIGIT, SHORT, LONG, NARROW][n];
           break
         case 'E':
         case 'e':
@@ -505,6 +505,13 @@ var f = [
   },
   function (s/*: string | number */)/*: Rule */ {
     var n = +s;
+    return n === 1 || n === 11 ? one
+      : n === 2 || n === 12 ? two
+      : n === 3 || n === 13 ? few
+      : other
+  },
+  function (s/*: string | number */)/*: Rule */ {
+    var n = +s;
     return n === 1 ? one
       : n === 2 || n === 3 ? two
       : n === 4 ? few
@@ -628,33 +635,34 @@ var plurals = {
   fur: { cardinal: f[0] },
   fy: { cardinal: f[4] },
   ga: { cardinal: f[14], ordinal: f[0] },
-  gd: { cardinal: f[15] },
+  gd: { cardinal: f[15], ordinal: f[40] },
   gl: { cardinal: f[4] },
   gsw: { cardinal: f[0] },
-  gu: { cardinal: f[2], ordinal: f[40] },
+  gu: { cardinal: f[2], ordinal: f[41] },
   guw: { cardinal: f[1] },
   gv: { cardinal: f[16] },
   ha: { cardinal: f[0] },
   haw: { cardinal: f[0] },
   he: { cardinal: f[17] },
-  hi: { cardinal: f[2], ordinal: f[40] },
+  hi: { cardinal: f[2], ordinal: f[41] },
   hr: { cardinal: f[7] },
   hsb: { cardinal: f[11] },
-  hu: { cardinal: f[0], ordinal: f[41] },
+  hu: { cardinal: f[0], ordinal: f[42] },
   hy: { cardinal: f[12], ordinal: f[0] },
+  ia: { cardinal: f[4] },
   io: { cardinal: f[4] },
   is: { cardinal: f[18] },
-  it: { cardinal: f[4], ordinal: f[42] },
+  it: { cardinal: f[4], ordinal: f[43] },
   iu: { cardinal: f[19] },
   iw: { cardinal: f[17] },
   jgo: { cardinal: f[0] },
   ji: { cardinal: f[4] },
   jmc: { cardinal: f[0] },
-  ka: { cardinal: f[0], ordinal: f[43] },
+  ka: { cardinal: f[0], ordinal: f[44] },
   kab: { cardinal: f[12] },
   kaj: { cardinal: f[0] },
   kcg: { cardinal: f[0] },
-  kk: { cardinal: f[0], ordinal: f[44] },
+  kk: { cardinal: f[0], ordinal: f[45] },
   kkj: { cardinal: f[0] },
   kl: { cardinal: f[0] },
   kn: { cardinal: f[2] },
@@ -673,17 +681,17 @@ var plurals = {
   mas: { cardinal: f[0] },
   mg: { cardinal: f[1] },
   mgo: { cardinal: f[0] },
-  mk: { cardinal: f[24], ordinal: f[45] },
+  mk: { cardinal: f[24], ordinal: f[46] },
   ml: { cardinal: f[0] },
   mn: { cardinal: f[0] },
   mo: { cardinal: f[25], ordinal: f[0] },
-  mr: { cardinal: f[2], ordinal: f[46] },
+  mr: { cardinal: f[2], ordinal: f[47] },
   mt: { cardinal: f[26] },
   nah: { cardinal: f[0] },
   naq: { cardinal: f[19] },
   nb: { cardinal: f[0] },
   nd: { cardinal: f[0] },
-  ne: { cardinal: f[0], ordinal: f[47] },
+  ne: { cardinal: f[0], ordinal: f[48] },
   nl: { cardinal: f[4] },
   nn: { cardinal: f[0] },
   nnh: { cardinal: f[0] },
@@ -693,7 +701,7 @@ var plurals = {
   ny: { cardinal: f[0] },
   nyn: { cardinal: f[0] },
   om: { cardinal: f[0] },
-  or: { cardinal: f[0], ordinal: f[48] },
+  or: { cardinal: f[0], ordinal: f[49] },
   os: { cardinal: f[0] },
   pa: { cardinal: f[1] },
   pap: { cardinal: f[0] },
@@ -708,7 +716,8 @@ var plurals = {
   ru: { cardinal: f[29] },
   rwk: { cardinal: f[0] },
   saq: { cardinal: f[0] },
-  scn: { cardinal: f[4], ordinal: f[42] },
+  sc: { cardinal: f[4], ordinal: f[43] },
+  scn: { cardinal: f[4], ordinal: f[43] },
   sd: { cardinal: f[0] },
   sdh: { cardinal: f[0] },
   se: { cardinal: f[19] },
@@ -725,12 +734,12 @@ var plurals = {
   sms: { cardinal: f[19] },
   sn: { cardinal: f[0] },
   so: { cardinal: f[0] },
-  sq: { cardinal: f[0], ordinal: f[49] },
+  sq: { cardinal: f[0], ordinal: f[50] },
   sr: { cardinal: f[7] },
   ss: { cardinal: f[0] },
   ssy: { cardinal: f[0] },
   st: { cardinal: f[0] },
-  sv: { cardinal: f[4], ordinal: f[50] },
+  sv: { cardinal: f[4], ordinal: f[51] },
   sw: { cardinal: f[4] },
   syr: { cardinal: f[0] },
   ta: { cardinal: f[0] },
@@ -738,14 +747,14 @@ var plurals = {
   teo: { cardinal: f[0] },
   ti: { cardinal: f[1] },
   tig: { cardinal: f[0] },
-  tk: { cardinal: f[0], ordinal: f[51] },
+  tk: { cardinal: f[0], ordinal: f[52] },
   tl: { cardinal: f[13], ordinal: f[0] },
   tn: { cardinal: f[0] },
   tr: { cardinal: f[0] },
   ts: { cardinal: f[0] },
   tzm: { cardinal: f[33] },
   ug: { cardinal: f[0] },
-  uk: { cardinal: f[29], ordinal: f[52] },
+  uk: { cardinal: f[29], ordinal: f[53] },
   ur: { cardinal: f[4] },
   uz: { cardinal: f[0] },
   ve: { cardinal: f[0] },
@@ -842,7 +851,7 @@ function interpretElement (
   if (parent && element[0] === '#') {
     id = parent[0];
     var offset = parent[2];
-    var formatter = (types.number || defaults.number)([ id, 'number' ], locale);
+    var formatter = (types.number || defaults.number)([id, 'number'], locale);
     return function format (args) {
       return formatter(getArg(id, args) - offset, args)
     }
@@ -855,13 +864,13 @@ function interpretElement (
     Object.keys(element[3]).forEach(function (key) {
       children[key] = interpretAST(element[3][key], element, locale, types, join);
     });
-    element = [ element[0], element[1], element[2], children ];
+    element = [element[0], element[1], element[2], children];
   } else if (element[2] && typeof element[2] === 'object') {
     children = {};
     Object.keys(element[2]).forEach(function (key) {
       children[key] = interpretAST(element[2][key], element, locale, types, join);
     });
-    element = [ element[0], element[1], children ];
+    element = [element[0], element[1], children];
   }
 
   var getFrmt = type && (types[type] || defaults[type]);
@@ -1083,7 +1092,7 @@ function parseAST (current/*: Context */, parentType/*: string */)/*: AST */ {
   var start = current.index;
   var text = parseText(current, parentType);
   if (text) elements.push(text);
-  if (text && current.tokens) current.tokens.push([ 'text', pattern.slice(start, current.index) ]);
+  if (text && current.tokens) current.tokens.push(['text', pattern.slice(start, current.index)]);
   while (current.index < length) {
     if (pattern[current.index] === ARG_CLS) {
       if (!parentType) throw expected(current)
@@ -1094,7 +1103,7 @@ function parseAST (current/*: Context */, parentType/*: string */)/*: AST */ {
     start = current.index;
     text = parseText(current, parentType);
     if (text) elements.push(text);
-    if (text && current.tokens) current.tokens.push([ 'text', pattern.slice(start, current.index) ]);
+    if (text && current.tokens) current.tokens.push(['text', pattern.slice(start, current.index)]);
   }
   return elements
 }
@@ -1170,16 +1179,16 @@ function skipWhitespace (current/*: Context */)/*: void */ {
     ++current.index;
   }
   if (start < current.index && current.tokens) {
-    current.tokens.push([ 'space', current.pattern.slice(start, current.index) ]);
+    current.tokens.push(['space', current.pattern.slice(start, current.index)]);
   }
 }
 
 function parsePlaceholder (current/*: Context */)/*: Placeholder */ {
   var pattern = current.pattern;
   if (pattern[current.index] === NUM_ARG) {
-    if (current.tokens) current.tokens.push([ 'syntax', NUM_ARG ]);
+    if (current.tokens) current.tokens.push(['syntax', NUM_ARG]);
     ++current.index; // move passed #
-    return [ NUM_ARG ]
+    return [NUM_ARG]
   }
 
   var tag = parseTag(current);
@@ -1187,43 +1196,43 @@ function parsePlaceholder (current/*: Context */)/*: Placeholder */ {
 
   /* istanbul ignore if should be unreachable if parseAST and parseText are right */
   if (pattern[current.index] !== ARG_OPN) throw expected(current, ARG_OPN)
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_OPN ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_OPN]);
   ++current.index; // move passed {
   skipWhitespace(current);
 
   var id = parseId(current);
   if (!id) throw expected(current, 'placeholder id')
-  if (current.tokens) current.tokens.push([ 'id', id ]);
+  if (current.tokens) current.tokens.push(['id', id]);
   skipWhitespace(current);
 
   var char = pattern[current.index];
   if (char === ARG_CLS) { // end placeholder
-    if (current.tokens) current.tokens.push([ 'syntax', ARG_CLS ]);
+    if (current.tokens) current.tokens.push(['syntax', ARG_CLS]);
     ++current.index; // move passed }
-    return [ id ]
+    return [id]
   }
 
   if (char !== ARG_SEP) throw expected(current, ARG_SEP + ' or ' + ARG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_SEP ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_SEP]);
   ++current.index; // move passed ,
   skipWhitespace(current);
 
   var type = parseId(current);
   if (!type) throw expected(current, 'placeholder type')
-  if (current.tokens) current.tokens.push([ 'type', type ]);
+  if (current.tokens) current.tokens.push(['type', type]);
   skipWhitespace(current);
   char = pattern[current.index];
   if (char === ARG_CLS) { // end placeholder
-    if (current.tokens) current.tokens.push([ 'syntax', ARG_CLS ]);
+    if (current.tokens) current.tokens.push(['syntax', ARG_CLS]);
     if (type === 'plural' || type === 'selectordinal' || type === 'select') {
       throw expected(current, type + ' sub-messages')
     }
     ++current.index; // move passed }
-    return [ id, type ]
+    return [id, type]
   }
 
   if (char !== ARG_SEP) throw expected(current, ARG_SEP + ' or ' + ARG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_SEP ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_SEP]);
   ++current.index; // move passed ,
   skipWhitespace(current);
 
@@ -1231,11 +1240,11 @@ function parsePlaceholder (current/*: Context */)/*: Placeholder */ {
   if (type === 'plural' || type === 'selectordinal') {
     var offset = parsePluralOffset(current);
     skipWhitespace(current);
-    arg = [ id, type, offset, parseSubMessages(current, type) ];
+    arg = [id, type, offset, parseSubMessages(current, type)];
   } else if (type === 'select') {
-    arg = [ id, type, parseSubMessages(current, type) ];
+    arg = [id, type, parseSubMessages(current, type)];
   } else if (simpleTypes.indexOf(type) >= 0) {
-    arg = [ id, type, parseSimpleFormat(current) ];
+    arg = [id, type, parseSimpleFormat(current)];
   } else { // custom placeholder type
     var index = current.index;
     var format/*: string | SubMessages */ = parseSimpleFormat(current);
@@ -1244,12 +1253,12 @@ function parsePlaceholder (current/*: Context */)/*: Placeholder */ {
       current.index = index; // rewind, since should have been submessages
       format = parseSubMessages(current, type);
     }
-    arg = [ id, type, format ];
+    arg = [id, type, format];
   }
 
   skipWhitespace(current);
   if (pattern[current.index] !== ARG_CLS) throw expected(current, ARG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_CLS ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_CLS]);
   ++current.index; // move passed }
   return arg
 }
@@ -1261,41 +1270,41 @@ function parseTag (current/*: Context */)/*: ?Placeholder */ {
   if (current.pattern.slice(current.index, current.index + TAG_END.length) === TAG_END) {
     throw expected(current, null, 'closing tag without matching opening tag')
   }
-  if (current.tokens) current.tokens.push([ 'syntax', TAG_OPN ]);
+  if (current.tokens) current.tokens.push(['syntax', TAG_OPN]);
   ++current.index; // move passed <
 
   var id = parseId(current, true);
   if (!id) throw expected(current, 'placeholder id')
-  if (current.tokens) current.tokens.push([ 'id', id ]);
+  if (current.tokens) current.tokens.push(['id', id]);
   skipWhitespace(current);
 
   if (current.pattern.slice(current.index, current.index + TAG_SELF_CLS.length) === TAG_SELF_CLS) {
-    if (current.tokens) current.tokens.push([ 'syntax', TAG_SELF_CLS ]);
+    if (current.tokens) current.tokens.push(['syntax', TAG_SELF_CLS]);
     current.index += TAG_SELF_CLS.length;
-    return [ id, tagsType ]
+    return [id, tagsType]
   }
   if (current.pattern[current.index] !== TAG_CLS) throw expected(current, TAG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', TAG_CLS ]);
+  if (current.tokens) current.tokens.push(['syntax', TAG_CLS]);
   ++current.index; // move passed >
 
   var children = parseAST(current, tagsType);
 
   var end = current.index;
   if (current.pattern.slice(current.index, current.index + TAG_END.length) !== TAG_END) throw expected(current, TAG_END + id + TAG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', TAG_END ]);
+  if (current.tokens) current.tokens.push(['syntax', TAG_END]);
   current.index += TAG_END.length;
   var closeId = parseId(current, true);
-  if (closeId && current.tokens) current.tokens.push([ 'id', closeId ]);
+  if (closeId && current.tokens) current.tokens.push(['id', closeId]);
   if (id !== closeId) {
     current.index = end; // rewind for better error message
     throw expected(current, TAG_END + id + TAG_CLS, TAG_END + closeId + TAG_CLS)
   }
   skipWhitespace(current);
   if (current.pattern[current.index] !== TAG_CLS) throw expected(current, TAG_CLS)
-  if (current.tokens) current.tokens.push([ 'syntax', TAG_CLS ]);
+  if (current.tokens) current.tokens.push(['syntax', TAG_CLS]);
   ++current.index; // move passed >
 
-  return [ id, tagsType, { children: children } ]
+  return [id, tagsType, { children: children }]
 }
 
 function parseId (current/*: Context */, isTag/*:: ?: boolean */)/*: string */ {
@@ -1319,7 +1328,7 @@ function parseSimpleFormat (current/*: Context */)/*: string */ {
   var start = current.index;
   var style = parseText(current, '{style}');
   if (!style) throw expected(current, 'placeholder style name')
-  if (current.tokens) current.tokens.push([ 'style', current.pattern.slice(start, current.index) ]);
+  if (current.tokens) current.tokens.push(['style', current.pattern.slice(start, current.index)]);
   return style
 }
 
@@ -1328,7 +1337,7 @@ function parsePluralOffset (current/*: Context */)/*: number */ {
   var length = pattern.length;
   var offset = 0;
   if (pattern.slice(current.index, current.index + OFFSET.length) === OFFSET) {
-    if (current.tokens) current.tokens.push([ 'offset', 'offset' ], [ 'syntax', ':' ]);
+    if (current.tokens) current.tokens.push(['offset', 'offset'], ['syntax', ':']);
     current.index += OFFSET.length; // move passed offset:
     skipWhitespace(current);
     var start = current.index;
@@ -1336,7 +1345,7 @@ function parsePluralOffset (current/*: Context */)/*: number */ {
       ++current.index;
     }
     if (start === current.index) throw expected(current, 'offset number')
-    if (current.tokens) current.tokens.push([ 'number', pattern.slice(start, current.index) ]);
+    if (current.tokens) current.tokens.push(['number', pattern.slice(start, current.index)]);
     offset = +pattern.slice(start, current.index);
   }
   return offset
@@ -1353,7 +1362,7 @@ function parseSubMessages (current/*: Context */, parentType/*: string */)/*: Su
   while (current.index < length && pattern[current.index] !== ARG_CLS) {
     var selector = parseId(current);
     if (!selector) throw expected(current, 'sub-message selector')
-    if (current.tokens) current.tokens.push([ 'selector', selector ]);
+    if (current.tokens) current.tokens.push(['selector', selector]);
     skipWhitespace(current);
     options[selector] = parseSubMessage(current, parentType);
     skipWhitespace(current);
@@ -1366,11 +1375,11 @@ function parseSubMessages (current/*: Context */, parentType/*: string */)/*: Su
 
 function parseSubMessage (current/*: Context */, parentType/*: string */)/*: AST */ {
   if (current.pattern[current.index] !== ARG_OPN) throw expected(current, ARG_OPN + ' to start sub-message')
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_OPN ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_OPN]);
   ++current.index; // move passed {
   var message = parseAST(current, parentType);
   if (current.pattern[current.index] !== ARG_CLS) throw expected(current, ARG_CLS + ' to end sub-message')
-  if (current.tokens) current.tokens.push([ 'syntax', ARG_CLS ]);
+  if (current.tokens) current.tokens.push(['syntax', ARG_CLS]);
   ++current.index; // move passed }
   return message
 }
@@ -1434,7 +1443,7 @@ type Internals = {
 }
 */
 
-var internals/*: WeakMap<MessageFormat, Internals> */ = new WeakMap();
+var internals/*: WeakMap<Object, Internals> */ = new WeakMap();
 
 /*!
  * Intl.MessageFormat prollyfill
